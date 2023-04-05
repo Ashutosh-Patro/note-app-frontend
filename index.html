@@ -14,11 +14,11 @@
 
 <body>
     <section
-        class="m-auto xl:w-1/3 flex flex-col justify-between items-center h-[100vh] rounded-3xl bg-orange-50 relative">
+        class="m-auto xl:w-1/3 flex flex-col justify-between items-center h-[100vh] bg-orange-50 rounded-3xl relative">
         <div class="w-full" id="show-notes">
             <h1 class="text-center text-6xl bg-yellow-400 rounded-t-3xl py-4 w-full">Notes</h1>
         </div>
-        <div class="w-5/6 h-full grid grid-cols-2 gap-4 text-3xl my-4" id="note-container">
+        <div class="w-5/6 h-full grid grid-cols-2 gap-4 text-3xl my-4 overflow-scroll" id="note-container">
         </div>
         <form name="form" class="flex flex-col items-center w-full" id="form">
             <input name="title" class="text-6xl w-full outline-none my-2 hidden" type="text" placeholder="Title"
@@ -28,13 +28,13 @@
             <button class="text-center bg-yellow-400 text-3xl rounded-b-3xl w-full py-4" id="add-button">Add
                 Note</button>
         </form>
-        <button class="absolute top-[90px] right-[10px] text-3xl hidden" id="hide-notes"><i
+        <button class="absolute top-[90px] right-[10px] text-3xl hidden text-black" id="hide-notes"><i
                 class="fas fa-regular fa-xmark"></i></button>
-        <button class="absolute bottom-[300px] right-[10px] text-3xl hidden" id="delete-notes"><i
+        <button class="absolute bottom-[300px] right-[10px] text-3xl hidden text-black" id="delete-notes"><i
                 class="fa-solid fa-trash-can"></i></button>
-        <button class="absolute bottom-[300px] right-[50px] text-3xl hidden" id="edit-notes"><i
+        <button class="absolute bottom-[300px] right-[50px] text-3xl hidden text-black" id="edit-notes"><i
                 class="fa-solid fa-pen-to-square"></i></button>
-        <button class="absolute bottom-[70px] right-[30px] rounded-full bg-black text-yellow-400 py-5 px-6"
+        <button class="absolute bottom-[70px] right-[30px] rounded-full bg-yellow-400 text-black py-5 px-6"
             id="add-note-button"><i class="fa-solid fa-plus"></i></button>
     </section>
     <script src="./js/script.js"></script>

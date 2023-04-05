@@ -52,7 +52,7 @@ const getAllNotes = async () => {
 const showAllNotes = async () => {
     const notes = await getAllNotes()
     console.log(notes);
-    notes.notes.forEach((note) => {
+    notes.data.forEach((note) => {
         const noteCard = document.createElement('div')
         // const lineBetween = document.createElement('hr')
         noteCard.classList.add('note')
