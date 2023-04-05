@@ -2,6 +2,8 @@ const addButton = document.querySelector('#add-button')
 const showNotes = document.querySelector('#show-notes')
 const noteContainer = document.querySelector('#note-container')
 const hideNote = document.querySelector('#hide-notes')
+const deleteNote = document.querySelector('#delete-notes')
+const editNote = document.querySelector('#edit-notes')
 
 const api = "http://localhost:8080/noteSchema"
 
@@ -45,12 +47,14 @@ const showAllNotes = async () => {
     notes.notes.forEach((note) => {
         const noteCard = document.createElement('div')
         noteCard.classList.add('note')
-        noteCard.innerHTML = `<h3>${note.title}</h3>`;
-        noteCard.innerHTML = `<p>${note.content}</p>`;
+        noteCard.innerHTML = `<h3 contentEditable="true">${note.title}</h3>`;
+        noteCard.innerHTML += `<p contentEditable="true">${note.content}</p>`;
         noteCard.addEventListener('click', () => {
             displayDetails(note._id)
             noteCard.style.display = "block"
             hideNote.classList.remove('hidden')
+            deleteNote.classList.remove('hidden')
+            editNote.classList.remove('hidden')
         })
         hideNote.addEventListener('click', () => {
             displayDetails(note._id)
@@ -58,6 +62,8 @@ const showAllNotes = async () => {
                 item.style.display = "block"
             })
             hideNote.classList.add('hidden')
+            deleteNote.classList.add('hidden')
+            editNote.classList.add('hidden')
         })
         noteContainer.appendChild(noteCard)
     })
@@ -79,4 +85,3 @@ const displayDetails = async (id) => {
     detailsOverlay.querySelector(".title").textContent = note.note.title
     detailsOverlay.querySelector(".content").textContent = note.note.content
 }
-
