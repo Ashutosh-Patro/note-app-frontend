@@ -6,6 +6,8 @@
     border: 2px solid rgb(250, 204, 21);
     padding: 5px;
     border-radius: 10px;
+    min-height: 30%;
+    overflow: hidden;
 }
 
 .note h3 {
