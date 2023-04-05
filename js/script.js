@@ -4,6 +4,14 @@ const noteContainer = document.querySelector('#note-container')
 const hideNote = document.querySelector('#hide-notes')
 const deleteNote = document.querySelector('#delete-notes')
 const editNote = document.querySelector('#edit-notes')
+const inputTitle = document.querySelector('#input-title')
+const inputNote = document.querySelector('#input-note')
+const addNotesButton = document.querySelector('#add-note-button')
+
+addNotesButton.addEventListener('click', () => {
+    inputTitle.classList.toggle('hidden')
+    inputNote.classList.toggle('hidden')
+})
 
 const api = "http://localhost:8080/noteSchema"
 
@@ -46,9 +54,12 @@ const showAllNotes = async () => {
     console.log(notes);
     notes.notes.forEach((note) => {
         const noteCard = document.createElement('div')
+        // const lineBetween = document.createElement('hr')
         noteCard.classList.add('note')
-        noteCard.innerHTML = `<h3 contentEditable="true">${note.title}</h3>`;
-        noteCard.innerHTML += `<p contentEditable="true">${note.content}</p>`;
+        noteCard.innerHTML = `<h3 class="note-title" contentEditable="true">${note.title}</h3>
+        <hr>
+        <p class="note-content" contentEditable="true">${note.content}</p>
+        `;
         noteCard.addEventListener('click', () => {
             displayDetails(note._id)
             noteCard.style.display = "block"
@@ -65,6 +76,41 @@ const showAllNotes = async () => {
             deleteNote.classList.add('hidden')
             editNote.classList.add('hidden')
         })
+        deleteNote.addEventListener('click', () => {
+            if (noteCard.style.display === "block") {
+                fetch(
+                    `${api}/delete`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                    },
+                    body: JSON.stringify({
+                        id: note._id
+                    }),
+                }).then((res) => {
+                    console.log("response:", res);
+                    window.location.reload();
+                })
+            }
+        })
+        editNote.addEventListener('click', () => {
+            if (noteCard.style.display === "block") {
+                console.log(noteCard);
+                fetch(
+                    `${api}/update`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                    },
+                    body: JSON.stringify({
+                        id: note._id, title: noteCard.querySelector('.note-title').textContent, content: noteCard.querySelector('.note-content').textContent
+                    }),
+                }).then((res) => {
+                    console.log("response:", res);
+                    window.location.reload();
+                })
+            }
+        })
         noteContainer.appendChild(noteCard)
     })
 }
@@ -80,8 +126,4 @@ const displayDetails = async (id) => {
     noteContainer.querySelectorAll('.note').forEach((item) => {
         item.style.display = "none"
     })
-    const note = await getSingleNote(id);
-    detailsOverlay.classList.toggle("hidden");
-    detailsOverlay.querySelector(".title").textContent = note.note.title
-    detailsOverlay.querySelector(".content").textContent = note.note.content
 }
