@@ -49,12 +49,12 @@ const getAllNotes = async () => {
     return notesData
 }
 
+showAllNotes()
 const showAllNotes = async () => {
     const notes = await getAllNotes()
     console.log(notes);
     notes.data.forEach((note) => {
         const noteCard = document.createElement('div')
-        // const lineBetween = document.createElement('hr')
         noteCard.classList.add('note')
         noteCard.innerHTML = `<h3 class="note-title" contentEditable="true">${note.title}</h3>
         <hr>
@@ -119,8 +119,6 @@ showNotes.addEventListener('click', () => {
     form.classList.toggle('hidden')
     noteContainer.classList.toggle('hidden')
 })
-
-showAllNotes()
 
 const displayDetails = async (id) => {
     noteContainer.querySelectorAll('.note').forEach((item) => {
