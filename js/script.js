@@ -49,7 +49,6 @@ const getAllNotes = async () => {
     return notesData
 }
 
-showAllNotes()
 const showAllNotes = async () => {
     const notes = await getAllNotes()
     console.log(notes);
@@ -114,6 +113,7 @@ const showAllNotes = async () => {
         noteContainer.appendChild(noteCard)
     })
 }
+showAllNotes()
 
 showNotes.addEventListener('click', () => {
     form.classList.toggle('hidden')
