@@ -61,6 +61,7 @@ const showAllNotes = async () => {
         `;
         noteCard.addEventListener('click', () => {
             displayDetails(note._id)
+            noteContainer.classList.remove("grid-cols-2")
             noteCard.style.display = "block"
             hideNote.classList.remove('hidden')
             deleteNote.classList.remove('hidden')
@@ -68,6 +69,7 @@ const showAllNotes = async () => {
         })
         hideNote.addEventListener('click', () => {
             displayDetails(note._id)
+            noteContainer.classList.add("grid-cols-2")
             noteContainer.querySelectorAll('.note').forEach((item) => {
                 item.style.display = "block"
             })
