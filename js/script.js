@@ -1,5 +1,4 @@
 const addButton = document.querySelector('#add-button')
-const showNotes = document.querySelector('#show-notes')
 const noteContainer = document.querySelector('#note-container')
 const hideNote = document.querySelector('#hide-notes')
 const deleteNote = document.querySelector('#delete-notes')
@@ -116,11 +115,6 @@ const showAllNotes = async () => {
     })
 }
 showAllNotes()
-
-showNotes.addEventListener('click', () => {
-    form.classList.toggle('hidden')
-    noteContainer.classList.toggle('hidden')
-})
 
 const displayDetails = async (id) => {
     noteContainer.querySelectorAll('.note').forEach((item) => {

@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700;800&display=swap');
+
+body {
+    background-color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
 .note-content {
     font-size: 18px;
 }
@@ -6,16 +13,43 @@
     border: 2px solid rgb(250, 204, 21);
     padding: 5px;
     border-radius: 10px;
-    min-height: 100px;
+    min-height: 150px;
     width: 100%;
     overflow: hidden;
+}
+
+.note:hover {
+    background-color: rgb(250, 226, 133);
+    /* min-height: 100%; */
+    /* position: absolute; */
 }
 
 .note h3 {
     font-weight: bold;
 }
 
+.note h3:first-letter {
+    text-transform: uppercase;
+}
+
 .note hr {
     border-color: black;
     margin: 10px 0;
+}
+
+.note p {
+    text-decoration: underline solid rgb(245, 212, 81);
+    text-underline-offset: 10px;
+}
+
+.note p:first-letter {
+    text-transform: uppercase;
+}
+
+#add-note-button:hover {
+    background-color: rgb(250, 226, 133);
+}
+
+#add-button:hover {
+    background-color: rgb(250, 226, 133);
 }
