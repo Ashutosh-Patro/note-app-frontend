@@ -15,7 +15,8 @@ addNotesButton.addEventListener('click', () => {
     inputNote.classList.toggle('hidden')
 })
 
-const api = "http://localhost:8080/noteSchema"
+const api = 'http://localhost:8080/api';
+
 
 addButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -139,5 +140,22 @@ async function deleteFunction(id) {
 const displayDetails = async (id) => {
     noteContainer.querySelectorAll('.note').forEach((item) => {
         item.style.display = "none"
+    })
+}
+
+async function fetchApi(method, url, data, successCallBack, errorCallBack) {
+    const response = await fetch(
+        url, {
+        method,
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        },
+        body: data,
+    });
+
+    response.then((res) => {
+        successCallBack(res);
+    }).catch(err => {
+        errorCallBack(err);
     })
 }
