@@ -57,7 +57,6 @@ const getAllNotes = async () => {
 
 const showAllNotes = async () => {
     const notes = await getAllNotes()
-    console.log(notes);
     notes.data.forEach((note) => {
         const noteCard = document.createElement('div')
         noteCard.classList.add('note')
@@ -85,28 +84,14 @@ const showAllNotes = async () => {
         })
         deleteNote.addEventListener('click', () => {
             if (noteCard.style.display === "block") {
-                fetch(
-                    `${api}/delete`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8",
-                    },
-                    body: JSON.stringify({
-                        id: note._id
-                    }),
-                }).then((res) => {
-                    console.log("response:", res);
-                    deleteIcon.classList.remove('hidden')
-                    setTimeout(() => {
-                        deleteIcon.classList.add('hidden')
-                        window.location.reload();
-                    }, 1000)
-                })
+                const deleteConfirm = confirm("Are you sure you want to delete this note?")
+                if (deleteConfirm === true) {
+                    deleteFunction(note._id)
+                }
             }
         })
         editNote.addEventListener('click', () => {
             if (noteCard.style.display === "block") {
-                console.log(noteCard);
                 fetch(
                     `${api}/update`, {
                     method: "PUT",
@@ -130,6 +115,26 @@ const showAllNotes = async () => {
     })
 }
 showAllNotes()
+
+async function deleteFunction(id) {
+    await fetch(
+        `${api}/delete`, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify({
+            id: id
+        }),
+    }).then((res) => {
+        console.log("response:", res);
+        deleteIcon.classList.remove('hidden')
+        setTimeout(() => {
+            deleteIcon.classList.add('hidden')
+            window.location.reload();
+        }, 1000)
+    })
+}
 
 const displayDetails = async (id) => {
     noteContainer.querySelectorAll('.note').forEach((item) => {
