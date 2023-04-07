@@ -20,12 +20,11 @@ body {
 
 .note:hover {
     background-color: rgb(250, 226, 133);
-    /* min-height: 100%; */
-    /* position: absolute; */
 }
 
 .note h3 {
     font-weight: bold;
+    outline: none;
 }
 
 .note h3:first-letter {
@@ -33,13 +32,14 @@ body {
 }
 
 .note hr {
-    border-color: black;
+    border-color: rgb(107, 105, 105);
     margin: 10px 0;
 }
 
 .note p {
     text-decoration: underline solid rgb(245, 212, 81);
     text-underline-offset: 10px;
+    outline: none;
 }
 
 .note p:first-letter {
@@ -52,4 +52,9 @@ body {
 
 #add-button:hover {
     background-color: rgb(250, 226, 133);
+}
+
+.filter {
+    /* filter: invert(15%) sepia(92%) saturate(7179%) hue-rotate(357deg) brightness(90%) contrast(118%) !important; */
+    filter: invert(77%) sepia(97%) saturate(2561%) hue-rotate(345deg) brightness(109%) contrast(98%) !important;
 }
