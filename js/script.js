@@ -6,9 +6,9 @@ const editNote = document.querySelector('#edit-notes')
 const inputTitle = document.querySelector('#input-title')
 const inputNote = document.querySelector('#input-note')
 const addNotesButton = document.querySelector('#add-note-button')
-// const successIcon = ``
-// const updatedIcon = ``
-// const deleteIcon = ``
+const successIcon = document.querySelector('#success-message')
+const updatedIcon = document.querySelector('#edit-message')
+const deleteIcon = document.querySelector('#delete-message')
 
 addNotesButton.addEventListener('click', () => {
     inputTitle.classList.toggle('hidden')
@@ -19,7 +19,6 @@ const api = "http://localhost:8080/noteSchema"
 
 addButton.addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('#success-message').classList.remove('hidden')
     if (form.title.value.trim().length > 0 && form.content.value.trim().length > 0) {
         fetch(
             `${api}/create`, {
@@ -33,8 +32,9 @@ addButton.addEventListener('click', (e) => {
             }),
         }).then((res) => {
             console.log("response:", res);
+            successIcon.classList.remove('hidden')
             setTimeout(() => {
-                document.querySelector('#success-message').classList.add('hidden')
+                successIcon.classList.add('hidden')
                 window.location.reload();
             }, 2000)
 
@@ -96,9 +96,9 @@ const showAllNotes = async () => {
                     }),
                 }).then((res) => {
                     console.log("response:", res);
-                    document.querySelector('#delete-message').classList.remove('hidden')
+                    deleteIcon.classList.remove('hidden')
                     setTimeout(() => {
-                        document.querySelector('#delete-message').classList.add('hidden')
+                        deleteIcon.classList.add('hidden')
                         window.location.reload();
                     }, 1000)
                 })
@@ -118,9 +118,9 @@ const showAllNotes = async () => {
                     }),
                 }).then((res) => {
                     console.log("response:", res);
-                    document.querySelector('#edit-message').classList.remove('hidden')
+                    updatedIcon.classList.remove('hidden')
                     setTimeout(() => {
-                        document.querySelector('#edit-message').classList.add('hidden')
+                        updatedIcon.classList.add('hidden')
                         window.location.reload();
                     }, 1000)
                 })
